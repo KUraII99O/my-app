@@ -9,16 +9,16 @@ import Updatepage from "./Pages/Updatepage";
 import NavBar from "./components/Navbar";
 import Signinpage from "./Pages/Signinpage";
 import InvoicePage from "./Pages/InvoicePage";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
     <Router>
       <NavBar />
       <div>
-        <h1 className="text-2xl font-bold">
-          User Registration and Subscription Management
-        </h1>
+        
         <Routes>
+          <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<Registerpage />} />
           <Route path="/create" element={<Createpage />} />
           <Route path="/update" element={<Updatepage />} />

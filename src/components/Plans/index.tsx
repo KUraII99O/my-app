@@ -8,7 +8,7 @@ interface SubscriptionPlan {
     features: string;
 }
 
-const User: React.FC = () => {
+const Plans: React.FC = () => {
     const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
     const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
     const navigate = useNavigate();
@@ -54,4 +54,4 @@ const User: React.FC = () => {
     );
 };
 
-export default User;
+export default Plans;

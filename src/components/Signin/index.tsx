@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const location = useLocation();
-    const navigate = useNavigate();
-    const { plan } = location.state || {}; // Add a fallback
+    const { plan } = location.state || {};
 
     const signIn = async () => {
         try {
@@ -15,13 +14,15 @@ const SignIn = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password,  plan })
+                body: JSON.stringify({ email, password, planId: plan?.id }) // Include planId
             });
             const data = await response.json();
-            if (data.invoice) {
-                navigate('/invoice', { state: { invoice: data.invoice } });
+            if (data.user) {
+                console.log('Signed in successfully.');
+                // Store user data in local storage
+                localStorage.setItem('user', JSON.stringify(data.user));
             } else {
-                console.error('Invoice data missing');
+                console.error('User data missing');
             }
         } catch (error) {
             console.error(error);
